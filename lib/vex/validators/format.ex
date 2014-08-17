@@ -41,7 +41,7 @@ defmodule Vex.Validators.Format do
   use Vex.Validator
 
   @message_fields [value: "The bad value"]
-  def validate(value, format) when is_regex(format), do: validate(value, with: format)
+  def validate(value, format) when is_record(format, Regex), do: validate(value, with: format)
   def validate(value, options) do
     unless_skipping(value, options) do
       pattern = Keyword.get(options, :with)
